@@ -9,19 +9,18 @@ class Employee{
     String designation;
     int salary;
 
-    // JDBC connection variables
+ 
     Connection conn;
     PreparedStatement pst;
     ResultSet rs;
 
-    // Method to establish JDBC connection
+ 
     void connectToDatabase() {
         try {
-            // Load the MySQL driver (Make sure the MySQL JDBC driver is in your classpath)
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Establish the connection to the database
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/companyDB", "root", "Root123$"); // Modify with your credentials
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/companyDB", "root", "Root123$"); 
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,7 +82,7 @@ class Employee{
     }
 
     void create() {
-        connectToDatabase();  // Establish database connection
+        connectToDatabase();
         System.out.println("Enter name: ");
         name = sc.nextLine();
         int space = 0;
@@ -133,12 +132,12 @@ class Employee{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        closeConnection();  // Close the database connection
+        closeConnection();
         continues();
     }
 
     void display() {
-        connectToDatabase();  // Establish database connection
+        connectToDatabase();
         System.out.println("Enter employee name to display: ");
         name = sc.nextLine();
 
@@ -159,12 +158,12 @@ class Employee{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        closeConnection();  // Close the database connection
+        closeConnection();
         screen();
     }
 
     void raiseSalary() {
-        connectToDatabase();  // Establish database connection
+        connectToDatabase();
         System.out.print("Enter employee name to raise salary: ");
         name = sc.nextLine();
 
@@ -187,7 +186,7 @@ class Employee{
                     System.out.println("Salary incremented by " + percent + "%");
                     System.out.println("Updated Salary: " + salary);
 
-                    // Update the salary in the database
+                  
                     String updateQuery = "UPDATE employees SET salary = ? WHERE name = ?";
                     pst = conn.prepareStatement(updateQuery);
                     pst.setInt(1, salary);
@@ -203,7 +202,7 @@ class Employee{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        closeConnection();  // Close the database connection
+        closeConnection(); 
         screen();
     }
 
