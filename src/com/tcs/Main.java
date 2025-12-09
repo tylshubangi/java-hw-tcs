@@ -19,14 +19,12 @@ class Employee{
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Establish the connection to the database
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/companyDB", "root", "Root123$"); 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // Method to close JDBC connection
     void closeConnection() {
         try {
             if (rs != null) rs.close();
